@@ -1,2 +1,1 @@
-# styled-react-kit
-ReactJS starter kit with styled components...
+# ReactJS Starter Kit With Styled Components
