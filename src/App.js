@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Text } from './ui/base-kits';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { Text } from "./ui/base-kits";
+
+console.log(React.version);
 
 class App extends Component {
   render() {
