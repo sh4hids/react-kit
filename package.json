@@ -1,22 +1,26 @@
 {
   "name": "react-kit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "dependencies": {
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-helmet": "^5.2.0",
+    "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
-    "styled-components": "^4.1.2"
+    "redux": "^4.0.1",
+    "styled-components": "^4.1.3",
+    "styled-system": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "prebuild": "npm run audit",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "audit": "npm audit"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",
