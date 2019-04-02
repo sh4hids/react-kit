@@ -1,8 +1,8 @@
 const config = {
   development: {
-    server: 'http://localhost:8000',
-    api: '/',
-    client: 'http://localhost:3000',
+    server: 'url:port',
+    api: 'api/v1',
+    client: 'url:port',
   },
   production: {
     server: 'url',
@@ -12,4 +12,3 @@ const config = {
 };
 
 export default config;
-
