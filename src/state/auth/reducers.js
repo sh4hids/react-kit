@@ -3,7 +3,6 @@ import * as types from './types';
 const initialState = {
   isAuthenticated: false,
   token: '',
-  redirectTo: '/',
 };
 
 const authReducers = function(state = initialState, { type, payload }) {
@@ -12,19 +11,16 @@ const authReducers = function(state = initialState, { type, payload }) {
       return {
         ...state,
         isAuthenticated: true,
-        user: {
+        loggedInUser: {
           ...payload.user,
         },
-        jwt: payload.token,
-        draftSignUp: {},
-        redirectTo: '/dashboard',
+        token: payload.token,
       };
     case types.LOGIN_COMPLETED:
       return {
         ...state,
         isAuthenticated: true,
         token: payload.token,
-        redirectTo: '/',
       };
     case types.LOGIN_FAILED:
       return {
@@ -34,27 +30,23 @@ const authReducers = function(state = initialState, { type, payload }) {
     case types.LOGOUT_COMPLETED || types.LOGOUT_FAILED:
       return {
         ...state,
-        isAuthenticated: false,
-        token: '',
-        redirectTo: '/',
+        ...initialState,
       };
     case types.SET_USER_TOKEN:
       return {
         ...state,
         isAuthenticated: payload ? true : false,
-        jwt: payload,
+        token: payload,
       };
     case types.RESET_PASSWORD_COMPLETED:
       return {
         ...state,
-        redirectTo: '/login',
+        ...initialState,
       };
     case types.SET_USER_UNAUTHORIZED:
       return {
         ...state,
-        isAuthenticated: false,
-        token: '',
-        redirectTo: '/login',
+        ...initialState,
       };
     default:
       return state;

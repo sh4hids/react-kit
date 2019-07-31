@@ -13,7 +13,7 @@ export default function withAuth(WrappedComponent) {
           {isAuthenticated ? (
             <WrappedComponent {...this.props} />
           ) : (
-            <Redirect to="/" />
+            <Redirect to="/login" />
           )}
         </Fragment>
       );

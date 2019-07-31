@@ -1,39 +1,34 @@
 import * as types from './types';
 
-export const signup = ({ email, username, phone, password }) => ({
-  type: types.SIGNUP,
+export const signup = data => ({
+  type: types.SIGNUP_STARTED,
   meta: {
     async: true,
     blocking: true,
-    path: `signup`,
+    path: `/signup`,
     method: 'POST',
-    body: {
-      email,
-      username,
-      phone,
-      password,
-    },
+    body: data,
   },
 });
 
-export const login = ({ username, password }) => ({
-  type: types.LOGIN,
+export const login = data => ({
+  type: types.LOGIN_STARTED,
   meta: {
     async: true,
     blocking: true,
-    path: `api-token-auth/`,
+    path: `/login`,
     method: 'POST',
-    body: { username, password },
+    body: data,
   },
 });
 
 export const logout = token => {
   return {
-    type: types.LOGOUT,
+    type: types.LOGOUT_STARTED,
     meta: {
       async: true,
       blocking: true,
-      path: `api-auth/logout/`,
+      path: `/logout`,
       method: 'POST',
       body: {},
       token,

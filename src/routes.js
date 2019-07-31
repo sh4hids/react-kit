@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { HomeContainer, UsersContainer } from './views/containers';
+import { HomePage, ProfilePage, LoginPage } from './views/pages';
 import { withAuth } from './helpers';
 
 const Routes = () => (
   <Switch>
-    <Route exact path="/" component={HomeContainer} />
-    <Route exact path="/users" component={withAuth(UsersContainer)} />
+    <Route exact path="/" component={HomePage} />
+    <Route exact path="/profile" component={withAuth(ProfilePage)} />
+    <Route exact path="/login" component={LoginPage} />
   </Switch>
 );
 

@@ -1,19 +1,10 @@
 import fetch from '../utils/axios';
-import config from '../config';
-import * as types from '../state/ducks/auth/types';
+import { api } from '../config/';
+import * as types from '../state/auth/types';
 import AuthService from './auth-service';
 
 const Auth = new AuthService();
-const env = process.env.NODE_ENV || 'development';
-const baseUrl = `${config[env].server}${config[env].api}`;
-const loginActions = [
-  types.LOGIN,
-  types.SIGNUP,
-  types.FB_LOGIN,
-  types.LINKEDIN_LOGIN,
-  types.GOOGLE_LOGIN,
-];
-
+const loginActions = [types.LOGIN_STARTED, types.SIGNUP_STARTED];
 const apiService = () => next => action => {
   const result = next(action);
   if (!action.meta || !action.meta.async) {
@@ -26,23 +17,22 @@ const apiService = () => next => action => {
     throw new Error(`'path' not specified for async action ${action.type}`);
   }
 
-  const url = `${baseUrl}${path}`;
-  const csrf = Auth.getCsrfToken();
+  const url = `${api}${path}`;
 
-  return fetch(url, method, body, type, jwt, csrf).then(
+  return fetch(url, method, body, type, jwt).then(
     res => handleResponse(res, action, next),
     err => handleErrors(err, action, next)
   );
 };
 
 function handleErrors(err, action, next) {
-  if (action.type === 'auth/logout') {
+  if (action.type === types.LOGOUT_STARTED) {
     Auth.removeToken();
   }
 
   if (err.status === 401) {
     next({
-      type: `auth/set_user_unauthorized`,
+      type: types.SET_USER_UNAUTHORIZED,
       payload: err,
       meta: action.meta,
     });
